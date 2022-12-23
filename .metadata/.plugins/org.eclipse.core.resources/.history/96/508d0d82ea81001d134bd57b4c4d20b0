@@ -1,0 +1,58 @@
+package com.bhavuk.SpringBatchTut;
+
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.batch.item.file.LineMapper;
+import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
+import org.springframework.batch.item.file.mapping.DefaultLineMapper;
+import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.FileSystemResource;
+
+@EnableBatchProcessing
+@Configuration
+public class SpringBatchConfig {
+	
+	
+	public FlatFileItemReader<Student> reader()
+	{
+		FlatFileItemReader<Student> itemReader=new FlatFileItemReader<Student>();
+		itemReader.setResource(new FileSystemResource("src/main/resources/Contacts.csv"));
+		itemReader.setLinesToSkip(1);
+		itemReader.setName("csvReader");
+		itemReader.setLineMapper(lineMapper());
+		
+		
+		
+		return itemReader;
+	}
+
+	public LineMapper<Student> lineMapper() {
+		// TODO Auto-generated method stub
+		DefaultLineMapper<Student> lineMapper=new DefaultLineMapper<Student>();
+		
+		DelimitedLineTokenizer  lineTokenizer=new DelimitedLineTokenizer();
+		lineTokenizer.setDelimiter(",");
+		lineTokenizer.setStrict(false);
+		lineTokenizer.setNames("Last_Name","First_Name","Phone","Email","Title","Designation");
+		
+		BeanWrapperFieldSetMapper<Student> fieldMapper=new BeanWrapperFieldSetMapper<Student>();
+		fieldMapper.setTargetType(Student.class);
+		
+		lineMapper.setLineTokenizer(lineTokenizer);
+		lineMapper.setFieldSetMapper(fieldMapper);
+		
+		
+		return lineMapper;
+		
+	}
+	@Bean
+	public StudentProcessor processor()
+	{
+		return new StudentProcessor;
+		
+	}
+	
+
+}

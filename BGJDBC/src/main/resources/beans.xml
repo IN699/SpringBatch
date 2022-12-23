@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+ <beans  
+ 	xmlns:batch="http://www.springframework.org/schema/batch" 
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+ 
+
+   
+   
+   <!--  <batch:job id="steps" >
+   <batch:step id=""> -->
+   
+   
+   
+   
+   <!-- </batch:step>
+   </batch:job>  -->
+   
+    <!-- <bean id="res" class="org.springframework.core.io.Resource" /> --> 
+
+  <!--  <bean id="res" name="org.springframework.batch.item.file.FlatFileItemReader">
+   <property name="resource" value="C:\\Users\\bgupta\\Desktop\\Assignments\\Assignment 2\\Spring-Batch\\Spring-Batch" />
+   </bean>  -->
+
+<bean name="dS" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+<property name="url" value="jdbc:mysql://hfdvvcdshdb01.vm.itg.corp.us.shldcorp.com:3372/training?useSSL=false" />
+<property name="username" value="training_rw" />
+<property name="password" value="Tr@in$n%R&amp;W12!" />
+</bean>
+
+<bean id="jdbctemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	<property name="dataSource" ref="dS" />
+</bean>
+
+<bean id="namedParameter" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+<constructor-arg ref="dS" />  
+</bean>
+
+<bean name="jdbc" class="BG.BGJDBC.StudentDao" >
+	<property name="namedparameterjdbctemplate" ref="namedParameter" />
+</bean>
+
+
+</beans>

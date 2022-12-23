@@ -1,0 +1,21 @@
+package com.bhavuk.SpringBatchTut;
+
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.core.io.FileSystemResource;
+
+@EnableBatchProcessing
+public class SpringBatchConfig {
+	
+	
+	public FlatFileItemReader<Student> reader()
+	{
+		FlatFileItemReader<Student> itemReader=new FlatFileItemReader<Student>();
+		itemReader.setResource(new FileSystemResource("src/main/resources/Contacts.csv"));
+		
+		
+		
+		return ;
+	}
+
+}

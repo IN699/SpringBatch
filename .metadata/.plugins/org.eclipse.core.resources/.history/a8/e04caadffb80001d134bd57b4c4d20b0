@@ -1,0 +1,8 @@
+package com.bhavuk.SpringBatchTut;
+
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+
+@EnableBatchProcessing
+public class SpringBatchConfig {
+
+}

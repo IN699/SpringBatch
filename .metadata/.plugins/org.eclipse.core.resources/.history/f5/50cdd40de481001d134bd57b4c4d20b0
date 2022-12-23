@@ -1,0 +1,4 @@
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://hfdvvcdshdb01.vm.itg.corp.us.shldcorp.com:3372/training?useSSL=false
+spring.datasource.username=training_rw
+spring.datsource.password=Tr@in$n%R&W12!

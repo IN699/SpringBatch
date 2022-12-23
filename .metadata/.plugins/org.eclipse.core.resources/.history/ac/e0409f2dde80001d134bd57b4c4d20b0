@@ -1,0 +1,13 @@
+package com.bhavuk.SpringBatchTut;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringBatchTutApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBatchTutApplication.class, args);
+	}
+
+}
