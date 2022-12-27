@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.batch.core.configuration.annotation.EnableBatchProcessing"/>
-    <fullyQualifiedTypeName name="org.springframework.core.io.FileSystemResource"/>
-    <fullyQualifiedTypeName name="org.springframework.batch.item.file.mapping.DefaultLineMapper"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
-    <fullyQualifiedTypeName name="org.springframework.batch.item.ItemProcessor"/>
-    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
-    <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.data.RepositoryItemWriter"/>
     <fullyQualifiedTypeName name="org.springframework.batch.core.configuration.annotation.StepBuilderFactory"/>
     <fullyQualifiedTypeName name="org.springframework.batch.core.configuration.annotation.JobBuilderFactory"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.core.launch.JobLauncher"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.core.JobParameters"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.core.JobParametersBuilder"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="javax.sql.DataSource"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.core.configuration.annotation.EnableBatchProcessing"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.file.FlatFileItemReader"/>
+    <fullyQualifiedTypeName name="org.springframework.core.io.FileSystemResource"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.file.mapping.DefaultLineMapper"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.file.transform.DelimitedLineTokenizer"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.file.transform.FixedLengthTokenizer"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.file.transform.Range"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.ItemProcessor"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.database.JdbcBatchItemWriter"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
     <fullyQualifiedTypeName name="org.springframework.batch.core.Step"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.core.launch.support.RunIdIncrementer"/>
     <fullyQualifiedTypeName name="org.springframework.batch.core.Job"/>
 </qualifiedTypeNameHistroy>

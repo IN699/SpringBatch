@@ -1,0 +1,11 @@
+package com.bhavuk.SpringBatchTut;
+
+import org.springframework.batch.core.launch.JobLauncher;
+
+public class JobController {
+	
+	
+	private JobLauncher job;
+	
+
+}
