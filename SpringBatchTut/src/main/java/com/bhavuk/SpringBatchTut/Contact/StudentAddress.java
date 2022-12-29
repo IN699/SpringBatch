@@ -1,21 +1,31 @@
 package com.bhavuk.SpringBatchTut.Contact;
 
 public class StudentAddress {
-
+	private String address_id;
 	private String address_line1;
 	private String address_line2;
 	private String address_type;
 	private String city;
 	private String state_cd;
-	private int zip_code;
+	private String zip_code;
 	private String zip_plus_4;
 	public StudentAddress() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public StudentAddress(String address_line1, String address_line2, String address_type, String city, String state_cd,
-			int zip_code, String zip_plus_4) {
+	
+	public String getAddress_id() {
+		return address_id;
+	}
+
+	public void setAddress_id(String address_id) {
+		this.address_id = address_id;
+	}
+
+	public StudentAddress(String address_id, String address_line1, String address_line2, String address_type, String city,
+			String state_cd, String zip_code, String zip_plus_4) {
 		super();
+		this.address_id = address_id;
 		this.address_line1 = address_line1;
 		this.address_line2 = address_line2;
 		this.address_type = address_type;
@@ -24,6 +34,7 @@ public class StudentAddress {
 		this.zip_code = zip_code;
 		this.zip_plus_4 = zip_plus_4;
 	}
+
 	public String getAddress_line1() {
 		return address_line1;
 	}
@@ -54,10 +65,10 @@ public class StudentAddress {
 	public void setState_cd(String state_cd) {
 		this.state_cd = state_cd;
 	}
-	public int getZip_code() {
+	public String getZip_code() {
 		return zip_code;
 	}
-	public void setZip_code(int zip_code) {
+	public void setZip_code(String zip_code) {
 		this.zip_code = zip_code;
 	}
 	public String getZip_plus_4() {

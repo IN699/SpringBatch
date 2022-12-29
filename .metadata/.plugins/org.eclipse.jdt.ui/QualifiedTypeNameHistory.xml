@@ -26,4 +26,8 @@
     <fullyQualifiedTypeName name="org.springframework.batch.core.Step"/>
     <fullyQualifiedTypeName name="org.springframework.batch.core.launch.support.RunIdIncrementer"/>
     <fullyQualifiedTypeName name="org.springframework.batch.core.Job"/>
+    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
+    <fullyQualifiedTypeName name="ch.qos.logback.classic.Logger"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.support.CompositeItemProcessor"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.support.ClassifierCompositeItemProcessor"/>
 </qualifiedTypeNameHistroy>

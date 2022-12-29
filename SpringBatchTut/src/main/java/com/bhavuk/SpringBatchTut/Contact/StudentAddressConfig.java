@@ -62,9 +62,9 @@ public class StudentAddressConfig {
 		
 		FixedLengthTokenizer lineTokenizer=new FixedLengthTokenizer();
 		lineTokenizer.setStrict(false);
-		lineTokenizer.setNames("address_line1","address_line2","address_type","city","state_cd","zip_code","zip_plus_4");
-		lineTokenizer.setColumns(new Range[] {new Range(12,27), new Range(28,72),new Range(11), new Range(73,83), new Range(86,88), new Range(89,93), new Range(94,97)});
-		
+		lineTokenizer.setNames("address_id","address_type","address_line1","address_line2","city","state_cd","zip_code","zip_plus_4");
+		lineTokenizer.setColumns(new Range[] {new Range(1,10), new Range(11,11) ,new Range(12,41), new Range(42,71), new Range(72,86), new Range(87,88), new Range(89,93), new Range(94,97)});
+	
 		BeanWrapperFieldSetMapper<StudentAddress> fieldMapper=new BeanWrapperFieldSetMapper<StudentAddress>();
 		fieldMapper.setTargetType(StudentAddress.class);
 		
@@ -80,7 +80,7 @@ public class StudentAddressConfig {
 		JdbcBatchItemWriter<StudentAddress> writer=new JdbcBatchItemWriter<StudentAddress>();
 		writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<StudentAddress>());
 		writer.setDataSource(this.datasource);
-		writer.setSql("INSERT INTO address_bhavuk(address_line1,address_line2,address_type,city,state_cd,zip_code,zip_plus_4) VALUES(:address_line1,:address_line2,:address_type,:city,:state_cd,:zip_code,zip_plus_4)");
+		writer.setSql("INSERT INTO address_bhavuk(address_id,address_line1,address_line2,address_type,city,state_cd,zip_code,zip_plus_4) VALUES(address_id,:address_line1,:address_line2,:address_type,:city,:state_cd,:zip_code,:zip_plus_4)");
 		return writer;
 		
 	}
