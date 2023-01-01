@@ -6,11 +6,17 @@ public class StudentProcessor implements ItemProcessor<Student,Student> {
 
 	@Override
 	public Student process(Student item) throws Exception {
-		// TODO Auto-generated method stub
-		Double number;
-		try {
-			number=
+		if(item.getFirst_name().equals("")||item.getLast_name().equals("")||item.getPhone()==0)
+		{
+			return null;
 		}
+		
+		if(item.getPhone()>10)
+		{
+			return null;
+		}
+		
+		
 		return item;
 	}
 

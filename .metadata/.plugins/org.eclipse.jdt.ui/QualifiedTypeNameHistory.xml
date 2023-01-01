@@ -30,4 +30,7 @@
     <fullyQualifiedTypeName name="ch.qos.logback.classic.Logger"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.support.CompositeItemProcessor"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.support.ClassifierCompositeItemProcessor"/>
+    <fullyQualifiedTypeName name="org.hibernate.validator.constraints.NotEmpty"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.validator.Validator"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.validator.ValidatingItemProcessor"/>
 </qualifiedTypeNameHistroy>

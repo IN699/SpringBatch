@@ -1,5 +1,6 @@
 package com.bhavuk.SpringBatchTut.Contact;
 
+
 public class StudentAddress {
 	private String address_id;
 	private String address_line1;
