@@ -1,0 +1,30 @@
+package com.bhavuk.SpringBatchTut.Address;
+
+import org.springframework.batch.item.ItemProcessor;
+
+public class StudentProcessor implements ItemProcessor<Student,Student> {
+
+	@Override
+	public Student process(Student item) throws Exception {
+		
+		String number=item.getPhone();
+		long num=Long.parseLong(number);
+		System.out.println(num);
+		
+		if(item.getFirstName().equals("")||item.getLastName().equals("") || item.getPhone().equals(""))
+		{
+			return null;
+		}
+		
+			if(item.getPhone().length()>10)
+			{
+				System.out.println(item);
+				return null;
+			}
+		
+		
+		
+		return item;
+	}
+
+}

@@ -1,5 +1,8 @@
 package com.bhavuk.SpringBatchTut.Address;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.sql.DataSource;
 
 import org.springframework.batch.core.Job;
@@ -7,20 +10,28 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.step.builder.SimpleStepBuilder;
+import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.data.RepositoryItemWriter;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.LineMapper;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
+import org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor;
+import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.batch.item.support.CompositeItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 
+import antlr.collections.List;
 import lombok.AllArgsConstructor;
 
 @EnableBatchProcessing
@@ -36,10 +47,12 @@ public class SpringBatchConfig {
 	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
 	
+	@Bean
+	@StepScope
 	public FlatFileItemReader<Student> reader()
 	{
 		FlatFileItemReader<Student> itemReader=new FlatFileItemReader<Student>();
-		itemReader.setResource(new FileSystemResource("src/main/resources/Contacts.csv"));
+		itemReader.setResource(new FileSystemResource("C:\\Users\\bgupta\\Desktop\\sts\\sts-4.17.0.RELEASE\\STSProjects\\SpringBatchTut\\src\\main\\resources\\Contacts.csv"));
 		itemReader.setLinesToSkip(1);
 		itemReader.setName("csvReader");
 		itemReader.setLineMapper(lineMapper());
@@ -56,7 +69,7 @@ public class SpringBatchConfig {
 		DelimitedLineTokenizer  lineTokenizer=new DelimitedLineTokenizer();
 		lineTokenizer.setDelimiter(",");
 		lineTokenizer.setStrict(false);
-		lineTokenizer.setNames("Last_Name","First_Name","Phone","Email","Title","Designation");
+		lineTokenizer.setNames("lastName","firstName","phone","email","title","designation");
 		
 		BeanWrapperFieldSetMapper<Student> fieldMapper=new BeanWrapperFieldSetMapper<Student>();
 		fieldMapper.setTargetType(Student.class);
@@ -68,22 +81,70 @@ public class SpringBatchConfig {
 		return lineMapper;
 		
 	}
+	
 	@Bean
+	@StepScope
 	public StudentProcessor processor()
 	{
 		return new StudentProcessor();
 		
 	}
+	
 	@Bean
-	public JdbcBatchItemWriter<Student> writer()
+	@StepScope
+	public JdbcBatchItemWriter<Student> writerJDBC()
 	{
 		JdbcBatchItemWriter<Student> writer=new JdbcBatchItemWriter<Student>();
 		writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<Student>());
-		writer.setSql("INSERT INTO contact_bhavuk(Last_Name,First_Name,Phone,Email,Title,Designation) VALUES(:Last_name,:First_name,:Phone,:Email,:Title,:Designation)");
+		writer.setSql("INSERT INTO contact_bhavuk(Last_Name,First_Name,Phone,Email,Title,Designation) VALUES(:lastName,:firstName,:phone,:email,:title,:designation)");
 		writer.setDataSource(this.datasource);
 		return writer;	
 		}
-
+	
+	@Bean
+	@StepScope
+	public FlatFileItemWriter<Student> writerCSV()
+	{
+		FlatFileItemWriter<Student> writer=new FlatFileItemWriter<Student>();
+		
+		DelimitedLineAggregator<Student> lineAggregator=new DelimitedLineAggregator<Student>();
+		lineAggregator.setDelimiter(",");
+		
+		BeanWrapperFieldExtractor<Student> Reflector=new BeanWrapperFieldExtractor<Student>();
+		Reflector.setNames(new String[]{"lastName","firstName","phone","email","title","designation"});
+		
+		
+		writer.setResource(new FileSystemResource("C:\\Users\\bgupta\\Desktop\\sts\\sts-4.17.0.RELEASE\\STSProjects\\SpringBatchTut\\src\\main\\resources\\ErrorOutput.csv"));
+		writer.setAppendAllowed(true);
+		writer.setLineAggregator(lineAggregator);
+//		writer.setHeaderCallback(null);
+		lineAggregator.setFieldExtractor(Reflector);
+		return writer;
+		
+		
+	}
+	
+	
+	@Bean
+	public CompositeItemWriter<Student> compositeItemWriter(){
+	    
+	    
+//	    writer.setDelegates(Arrays.asList(writerJDBC(),writerCSV()));
+	    
+		CompositeItemWriter<Student> writer2 = new CompositeItemWriter<>();
+	    Student s1=new Student();
+	    
+	    if(s1.isValid())
+	    {
+	    	CompositeItemWriter<Student> writer = new CompositeItemWriter<>();
+	    	writer.setDelegates(Arrays.asList(writerJDBC()));
+	    	 return writer;
+	    }
+	    	writer2.setDelegates(Arrays.asList(writerCSV()));
+	    	 return writer2;
+	}
+	
+		
 	@Bean
 	public Job runJob()
 	{
@@ -95,10 +156,12 @@ public class SpringBatchConfig {
 	
 	@Bean
 	public Step step1() {
-		return stepBuilderFactory.get("csv-step").<Student, Student>chunk(10)
+		return ((SimpleStepBuilder<Student, Student>) stepBuilderFactory.get("csv-step").<Student, Student>chunk(10)
 								 .reader(reader())
+								 .allowStartIfComplete(true))
 								 .processor(processor())
-								 .writer(writer())
+								 .writer(compositeItemWriter())
+								 .listener(new StudentStepExecutionListener())
 								 .build();	 
 	}
 	

@@ -1,5 +1,0 @@
-package com.bhavuk.SpringBatchTut.Contact;
-
-public class StudentAddressProcessor implements ItemProcessor<StudentAddress,StudentAddress> {
-
-}

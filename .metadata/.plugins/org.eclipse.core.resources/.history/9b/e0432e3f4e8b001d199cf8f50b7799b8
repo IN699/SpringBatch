@@ -1,0 +1,75 @@
+package com.bhavuk.SpringBatchTut.Address;
+
+public class Student {
+	
+	private String Last_name;
+	private String First_name;
+	private double Phone;
+	private String Email;
+	private String Title;
+	private String Designation;
+	
+	public Student() {}
+
+	public String getLast_name() {
+		return last_name;
+	}
+
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
+
+	public String getFirst_name() {
+		return first_name;
+	}
+
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+
+	public double getPhone() {
+		return phone;
+	}
+
+	public void setPhone(double phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+
+//	public Student(String last_name, String first_name, double phone, String email, String title, String designation) {
+//		super();
+//		Last_name = last_name;
+//		First_name = first_name;
+//		Phone = phone;
+//		Email = email;
+//		Title = title;
+//		Designation = designation;
+//	}
+
+
+
+	
+}

@@ -13,8 +13,6 @@
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
     <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
     <fullyQualifiedTypeName name="org.springframework.batch.core.configuration.annotation.EnableBatchProcessing"/>
-    <fullyQualifiedTypeName name="org.springframework.batch.item.file.FlatFileItemReader"/>
-    <fullyQualifiedTypeName name="org.springframework.core.io.FileSystemResource"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.file.mapping.DefaultLineMapper"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.file.transform.DelimitedLineTokenizer"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.file.transform.FixedLengthTokenizer"/>
@@ -24,7 +22,6 @@
     <fullyQualifiedTypeName name="org.springframework.batch.item.database.JdbcBatchItemWriter"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
     <fullyQualifiedTypeName name="org.springframework.batch.core.Step"/>
-    <fullyQualifiedTypeName name="org.springframework.batch.core.launch.support.RunIdIncrementer"/>
     <fullyQualifiedTypeName name="org.springframework.batch.core.Job"/>
     <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
     <fullyQualifiedTypeName name="ch.qos.logback.classic.Logger"/>
@@ -33,4 +30,21 @@
     <fullyQualifiedTypeName name="org.hibernate.validator.constraints.NotEmpty"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.validator.Validator"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.validator.ValidatingItemProcessor"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.support.CompositeItemWriter"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="antlr.collections.List"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.file.FlatFileItemReader"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.file.FlatFileItemWriter"/>
+    <fullyQualifiedTypeName name="org.springframework.core.io.FileSystemResource"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.file.transform.DelimitedLineAggregator"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.core.launch.support.RunIdIncrementer"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.core.configuration.annotation.StepScope"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.core.jsr.ItemReadListenerAdapter"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.core.StepExecutionListener"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
 </qualifiedTypeNameHistroy>

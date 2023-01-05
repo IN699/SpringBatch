@@ -1,0 +1,39 @@
+package com.bhavuk.SpringBatchTut.Address;
+
+import org.springframework.batch.item.ItemProcessor;
+
+public class StudentProcessor implements ItemProcessor<Student,Student> {
+
+	@Override
+	public Student process(Student item) throws Exception {
+		
+		String number=item.getPhone();
+//		int num=Integer.parseInt(val);
+		System.out.println(number);
+		
+		if(item.getFirstName().equals("")||item.getLastName().equals("") || item.getPhone().equals(""))
+		{
+			return null;
+		}
+		
+//		int count=0;
+//		Double rem=0.0;
+//		
+//		while(number!=0)
+//		{
+//			rem=number%10;
+//			count++;
+//			number=number/10;
+//		}
+//			if(count>10)
+//			{
+//				System.out.println(rem);
+//				return null;
+//			}
+//		
+		
+		
+		return item;
+	}
+
+}

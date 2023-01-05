@@ -6,18 +6,32 @@ public class StudentProcessor implements ItemProcessor<Student,Student> {
 
 	@Override
 	public Student process(Student item) throws Exception {
-		if(item.getFirst_name().equals("")||item.getLast_name().equals("")||item.getPhone()==0)
+		
+		long num=0;
+		
+		if(item.getFirstName().equals("")||item.getLastName().equals("") || item.getPhone().equals("") || item.getPhone().length()>10)
 		{
-			return null;
+			item.setValid(false);
+			//return item;
+			
+			return item;
 		}
 		
-		if(item.getPhone()>10)
-		{
-			return null;
-		}
-		
+	
+//		try {
+//			
+//			num=Long.parseLong(item.getPhone());
+//			item.setValid(true);
+//			//return item;
+//		}
+//		catch(NumberFormatException e)
+//		{
+//			item.setValid(false);
+//		}
 		
 		return item;
+		
+		
 	}
 
 }
