@@ -23,7 +23,6 @@
     <fullyQualifiedTypeName name="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
     <fullyQualifiedTypeName name="org.springframework.batch.core.Step"/>
     <fullyQualifiedTypeName name="org.springframework.batch.core.Job"/>
-    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
     <fullyQualifiedTypeName name="ch.qos.logback.classic.Logger"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.support.CompositeItemProcessor"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.support.ClassifierCompositeItemProcessor"/>
@@ -31,7 +30,6 @@
     <fullyQualifiedTypeName name="org.springframework.batch.item.validator.Validator"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.validator.ValidatingItemProcessor"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.support.CompositeItemWriter"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="antlr.collections.List"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.file.FlatFileItemReader"/>
     <fullyQualifiedTypeName name="org.springframework.batch.item.file.FlatFileItemWriter"/>
@@ -46,5 +44,12 @@
     <fullyQualifiedTypeName name="lombok.Getter"/>
     <fullyQualifiedTypeName name="lombok.Setter"/>
     <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
+    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
+    <fullyQualifiedTypeName name="org.springframework.batch.item.ItemWriter"/>
+    <fullyQualifiedTypeName name="org.springframework.util.NumberUtils"/>
+    <fullyQualifiedTypeName name="org.apache.commons.lang3.math.NumberUtils"/>
 </qualifiedTypeNameHistroy>

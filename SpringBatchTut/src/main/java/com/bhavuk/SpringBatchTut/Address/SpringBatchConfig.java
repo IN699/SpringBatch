@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.sql.DataSource;
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -86,67 +87,19 @@ public class SpringBatchConfig {
 	@StepScope
 	public StudentProcessor processor()
 	{
+		
 		return new StudentProcessor();
 		
 	}
-	
-	@Bean
-	@StepScope
-	public JdbcBatchItemWriter<Student> writerJDBC()
+	public MyCompositeItemWriter myCustomWriter()
 	{
-		JdbcBatchItemWriter<Student> writer=new JdbcBatchItemWriter<Student>();
-		writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<Student>());
-		writer.setSql("INSERT INTO contact_bhavuk(Last_Name,First_Name,Phone,Email,Title,Designation) VALUES(:lastName,:firstName,:phone,:email,:title,:designation)");
-		writer.setDataSource(this.datasource);
-		return writer;	
-		}
-	
-	@Bean
-	@StepScope
-	public FlatFileItemWriter<Student> writerCSV()
-	{
-		FlatFileItemWriter<Student> writer=new FlatFileItemWriter<Student>();
-		
-		DelimitedLineAggregator<Student> lineAggregator=new DelimitedLineAggregator<Student>();
-		lineAggregator.setDelimiter(",");
-		
-		BeanWrapperFieldExtractor<Student> Reflector=new BeanWrapperFieldExtractor<Student>();
-		Reflector.setNames(new String[]{"lastName","firstName","phone","email","title","designation"});
-		
-		
-		writer.setResource(new FileSystemResource("C:\\Users\\bgupta\\Desktop\\sts\\sts-4.17.0.RELEASE\\STSProjects\\SpringBatchTut\\src\\main\\resources\\ErrorOutput.csv"));
-		writer.setAppendAllowed(true);
-		writer.setLineAggregator(lineAggregator);
-//		writer.setHeaderCallback(null);
-		lineAggregator.setFieldExtractor(Reflector);
-		return writer;
-		
-		
+		return new MyCompositeItemWriter();
 	}
 	
 	
-	@Bean
-	public CompositeItemWriter<Student> compositeItemWriter(){
-	    
-	    
-//	    writer.setDelegates(Arrays.asList(writerJDBC(),writerCSV()));
-	    
-		CompositeItemWriter<Student> writer2 = new CompositeItemWriter<>();
-	    Student s1=new Student();
-	    
-	    if(s1.isValid())
-	    {
-	    	CompositeItemWriter<Student> writer = new CompositeItemWriter<>();
-	    	writer.setDelegates(Arrays.asList(writerJDBC()));
-	    	 return writer;
-	    }
-	    	writer2.setDelegates(Arrays.asList(writerCSV()));
-	    	 return writer2;
-	}
-	
 		
 	@Bean
-	public Job runJob()
+	public Job runJob() throws Exception
 	{
 		return (Job) jobBuilderFactory.get("importStudent")
 								.incrementer(new RunIdIncrementer())
@@ -155,12 +108,12 @@ public class SpringBatchConfig {
 	}
 	
 	@Bean
-	public Step step1() {
+	public Step step1() throws Exception {
 		return ((SimpleStepBuilder<Student, Student>) stepBuilderFactory.get("csv-step").<Student, Student>chunk(10)
 								 .reader(reader())
 								 .allowStartIfComplete(true))
 								 .processor(processor())
-								 .writer(compositeItemWriter())
+								 .writer(myCustomWriter())
 								 .listener(new StudentStepExecutionListener())
 								 .build();	 
 	}
@@ -168,3 +121,81 @@ public class SpringBatchConfig {
 	
 
 }
+
+//	@Bean
+//	@StepScope
+//	public JdbcBatchItemWriter<Student> writerJDBC()
+//	{
+//		JdbcBatchItemWriter<Student> writer=new JdbcBatchItemWriter<Student>();
+//		writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<Student>());
+//		writer.setSql("INSERT INTO contact_bhavuk(Last_Name,First_Name,Phone,Email,Title,Designation) VALUES(:lastName,:firstName,:phone,:email,:title,:designation)");
+//		writer.setDataSource(this.datasource);
+//		return writer;	
+//		}
+
+//	@Bean
+//	@StepScope
+//	public FlatFileItemWriter<Student> writerCSV()
+//	{
+//		FlatFileItemWriter<Student> writer=new FlatFileItemWriter<Student>();
+//		
+//		DelimitedLineAggregator<Student> lineAggregator=new DelimitedLineAggregator<Student>();
+//		lineAggregator.setDelimiter(",");
+//		
+//		BeanWrapperFieldExtractor<Student> Reflector=new BeanWrapperFieldExtractor<Student>();
+//		Reflector.setNames(new String[]{"lastName","firstName","phone","email","title","designation"});
+//		
+//		
+//		writer.setResource(new FileSystemResource("C:\\Users\\bgupta\\Desktop\\sts\\sts-4.17.0.RELEASE\\STSProjects\\SpringBatchTut\\src\\main\\resources\\ErrorOutput.csv"));
+//		writer.setAppendAllowed(true);
+//		writer.setLineAggregator(lineAggregator);
+////		writer.setHeaderCallback(null);
+//		lineAggregator.setFieldExtractor(Reflector);
+//		return writer;
+//		
+//		
+//	}
+
+
+//	@Bean
+//	public CompositeItemWriter<Student> compositeItemWriter() throws Exception{
+//	    
+////	    	java.util.Iterator<Student> it=list.iterator();
+////	    Student s1=new Student();
+////	    	it.
+//	 	 // if(list.contains(list))
+////			    {
+////			    	
+////			    	writer.setDelegates(Arrays.asList(writerJDBC()));
+////			    	 return writer;
+////			    }
+////			    else {
+////			    	writer.setDelegates(Arrays.asList(writerCSV()));
+////			    	 return writer;
+////			    }
+//	    
+//	    
+//		CompositeItemWriter<Student> writer = new CompositeItemWriter<>();
+//	    	ArrayList<Student> list=new ArrayList<Student>();
+//	    	writer.write(list);
+//	    	
+////	   
+//	    	
+//	    	
+//	    	
+//	    	
+//	    	for(Student s1 : list) {
+//	    		if(s1.isValid()) {
+//			    	writer.setDelegates(Arrays.asList(writerJDBC()));
+//			    	 return writer;
+//	    		}
+//	    		else {
+//			    	writer.setDelegates(Arrays.asList(writerCSV()));
+//			    	 return writer;
+//	    		}
+//	    	}
+//	    	
+//	    
+//	    return null;
+//	  
+//	}

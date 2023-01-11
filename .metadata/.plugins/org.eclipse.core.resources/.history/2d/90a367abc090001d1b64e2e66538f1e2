@@ -1,0 +1,36 @@
+package com.bhavuk.SpringBatchTut.Address;
+
+import org.springframework.batch.item.ItemProcessor;
+import org.springframework.util.NumberUtils;
+
+public class StudentProcessor implements ItemProcessor<Student,Student> {
+
+	@Override
+	public Student process(Student item) throws Exception {
+		int flag=0;
+			
+			if(item.getFirstName().equals("")||item.getLastName().equals("") || item.getPhone().equals("") || item.getPhone().length()>10 || org.apache.commons.lang3.math.NumberUtils.isCreatable(item.getPhone()))
+			{
+				
+			}
+			else {
+				
+			}
+		
+		return item;
+		
+		
+	}
+	
+
+}
+
+//			char[] ch=s1.getPhone().toCharArray();
+//			for(char c:ch)
+//		    {
+//		        if(!Character.isDigit(c))
+//		        {
+//		            flag=1;
+//		        }
+//		        
+//		    }

@@ -15,7 +15,7 @@ public class Student {
 	private String email;
 	private String title;
 	private String designation;
-	private boolean isValid;
+	private int flag;
 	
 	
 }
